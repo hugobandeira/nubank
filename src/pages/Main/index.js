@@ -24,6 +24,7 @@ export default function Main() {
     ],
     { useNativeDriver: true },
   );
+
   function onHandlerStateChange(event) {
     if (event.nativeEvent.oldState === State.ACTIVE) {
       let opened = false;
@@ -37,16 +38,18 @@ export default function Main() {
         offset = 0;
       }
       Animated.timing(translateY, {
-        toValue:  opened ? 380 : 0,
+        toValue: opened ? 380 : 0,
         duration: 200,
         useNativeDriver: true,
-      }).start(() => {
-        offset = opened ? 380 : 0;
-        translateY.setOffset(offset);
-        translateY.setValue(0);
-      });
+      })
+        .start(() => {
+          offset = opened ? 380 : 0;
+          translateY.setOffset(offset);
+          translateY.setValue(0);
+        });
     }
   }
+
   return (
     <Container>
       <Header />
@@ -77,13 +80,13 @@ export default function Main() {
             </CardContent>
             <CardFooter>
               <Annotation>
-                Transfêrencia de R$ 289 milhões recebida de Caixa Economica Federal hoje às 08:00h; 
+                Transfêrencia de R$ 289 milhões recebida de Caixa Economica Federal hoje às 08:00h;
               </Annotation>
             </CardFooter>
           </Card>
         </PanGestureHandler>
       </Content>
-      <Tabs translateY={translateY} />
+      <Tabs translateY={translateY}/>
     </Container>
   );
 }
